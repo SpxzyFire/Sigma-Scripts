@@ -1,0 +1,33 @@
+castingSection:AddToggle({
+    Name = "Auto-Cast",
+    Default = false,
+    Callback = function(Value)
+        StopCoroutine("AutoCast") -- Stop existing coroutine
+        if Value then
+            Coroutines.AutoCast = coroutine.create(function()
+                while task.wait(0.3) and Value do
+                    pcall(function()
+                        if not CurrentTool then
+                            CurrentTool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+                        end
+
+                        if CurrentTool then
+                            local Values = CurrentTool:FindFirstChild("values")
+                            if Values and Values.casted.Value == false then
+                                local AnimationFolder = ReplicatedStorage:WaitForChild("resources"):WaitForChild("animations")
+                                local CastAnimation = LocalPlayer.Character.Humanoid:LoadAnimation(AnimationFolder.fishing.throw)
+                                CastAnimation.Priority = Enum.AnimationPriority.Action3
+                                CastAnimation:Play()
+                                CurrentTool.events.cast:FireServer(100, 1)
+                                CastAnimation.Stopped:Once(function()
+                                    CastAnimation:Destroy()
+                                end)
+                            end
+                        end
+                    end)
+                end
+            end)
+            coroutine.resume(Coroutines.AutoCast)
+        end
+    end
+})
