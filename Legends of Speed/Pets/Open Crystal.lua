@@ -1,4 +1,4 @@
-local crystalNames = {
+local crystalNames = { -- naming every crystals
     "Red Crystal",
     "Blue Crystal",
     "Purple Crystal",
@@ -12,7 +12,7 @@ local crystalNames = {
 
 local selectedCrystal = ""
 
-Crystals:AddDropdown({
+Crystals:AddDropdown({ -- making sure we can select the proper crystal we want to open
     Name = "Dropdown",
     Default = "Pick the Crystal you wish to buy",
     Options = crystalNames,
@@ -21,8 +21,8 @@ Crystals:AddDropdown({
         print("Selected crystal: " .. selectedCrystal)
     end    
 })
-
-Crystals:AddButton({
+ 
+Crystals:AddButton({ -- manually opening 1 crystal after selecting the crystal from the dropdown
     Name = "Buy Crystal",
     Callback = function()
         if selectedCrystal == "" then
@@ -39,7 +39,7 @@ Crystals:AddButton({
 })
 
 
-Crystals:AddToggle({
+Crystals:AddToggle({ -- automaticly opening crystals after selecting the crystal from the dropdown
     Name = "Mass Buy Crystal",
     Default = false,
     Callback = function(Value)
