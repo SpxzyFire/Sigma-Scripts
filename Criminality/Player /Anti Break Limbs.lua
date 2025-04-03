@@ -1,5 +1,5 @@
 local Settings = {
-    NoRagdoll = false,
+    NoRagdoll = false
 }
 
 local oldNamecall
