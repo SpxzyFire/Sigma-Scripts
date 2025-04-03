@@ -1,5 +1,5 @@
 local Settings = {
-    InstantEquip = false,
+    InstantEquip = false
 }
 
 GunModsTab:AddToggle({
