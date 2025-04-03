@@ -78,7 +78,7 @@ Pets:AddButton({
 # Toggle
 If you just want to mass dupe (using a toggle)
 just add this under the first script
-```
+```lua
 Pets:AddToggle({
     Name = "Mass Dupe",
     Default = false,
